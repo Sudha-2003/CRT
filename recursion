@@ -1,0 +1,18 @@
+def Sum(i,n,nums):
+    if i==n:
+        return 0
+    t=nums[i]+Sum(i+1,n,nums)
+    return t
+nums=[1,5,9,3]
+n=len(nums)
+print(Sum(0,n,nums))
+
+
+def Max(i,n,nums):
+    if i==n:
+        return 0
+    t=max(nums[i],Max(i+1,n,nums))
+    return t
+nums=[1,5,9,3]
+n=len(nums)
+print(Max(0,n,nums))
