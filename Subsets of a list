@@ -1,0 +1,11 @@
+def subsets_of_a_list(i,arr,res):
+    if i==len(arr):
+        print(res)
+        return
+    res.append(arr[i])
+    subsets_of_a_list(i+1,arr,res)
+    res.pop()
+    subsets_of_a_list(i+1,arr,res)
+
+arr=[1,5,3,60]
+subsets_of_a_list(0,arr,[])
