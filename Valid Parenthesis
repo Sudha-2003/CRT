@@ -1,0 +1,15 @@
+def valid_parenthesis(res,n,c1,c2):
+    if c2>c1:
+        return
+    if c1>n//2 or c2>n//2:
+        return
+    if len(res)==n:
+            print(res)
+            return
+    valid_parenthesis(res+"(",n,c1+1,c2)
+    valid_parenthesis(res+")",n,c1,c2+1)
+n=int(input())
+if n%2==1:
+    print("No possible string")
+    exit(0)
+valid_parenthesis("",n,0,0)
