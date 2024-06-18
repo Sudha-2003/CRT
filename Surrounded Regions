@@ -1,0 +1,33 @@
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        m,n=len(board),len(board[0])
+        def surround(row,col):
+            if board[row][col]!="O":
+                return
+            board[row][col]="#"
+            q=[[row,col]]
+            directions=[[0,-1],[0,1],[1,0],[-1,0]]
+            while q:
+                curr=q.pop(0)
+                for direction in directions:
+                    newR=curr[0]+direction[0]
+                    newC=curr[1]+direction[1]
+                    if newR>=0 and newC>=0 and newR<m and newC<n and board[newR][newC]=="O":
+                        board[newR][newC]="#"
+                        q.append([newR,newC])
+        for row in range(m):
+            surround(row,0)
+            surround(row,n-1)
+        for col in range(n):
+            surround(0,col)
+            surround(m-1,col)
+        for row in range(m):
+            for col in range(n):
+                if board[row][col]=="#":
+                    board[row][col]="O"
+                else:
+                    board[row][col]="X"
+        return board
