@@ -1,0 +1,29 @@
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        minWeight=max(weights)
+        maxWeight=sum(weights)
+        def isPossible(val):
+            daysLeft=days-1
+            currentLoad=0
+            for pack in weights:
+                if pack>val:
+                    return False
+                if currentLoad + pack > val:
+                    currentLoad = pack 
+                    daysLeft -= 1 
+                    if daysLeft < 0:
+                        return False
+                else:
+                    currentLoad += pack 
+            return True
+        left=minWeight
+        right=maxWeight
+        result=-1
+        while left<=right:
+            mid=(left+right)//2
+            if isPossible(mid):
+                result=mid
+                right=mid-1
+            else:
+                left=mid+1
+        return result
