@@ -1,0 +1,10 @@
+class Solution:
+    def addDigits(self, num: int) -> int:
+        def solve(sum,num):
+            if num==0:
+                return 0
+            sum+=num%10+num//10
+            if sum<10:
+                return sum
+            return solve(0,sum)
+        return solve(0,num)
